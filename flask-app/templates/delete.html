@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h1 class="mt-5">Delete User</h1>
+<h3 class="text-muted"><small>Deleting user: <i>{{ data[0]['UserName'] }}</i></small></h3>
+<hr>
+
+<table class="table">
+    <tr>
+        <th class="px-4 text-center">User Name</th>
+        <th class="px-4 text-center">Number Marks</th>
+        <th class="px-4 text-center">Current Standing</th>
+        <th class="px-4 text-center">Recent Date</th>
+    </tr>
+    
+    {% for item in data %}
+
+        <tr>
+            <td class="px-4 text-center">{{ item['UserName'] }}</td>
+            <td class="px-4 text-center">{{ item['NumberMarks'] }}</td>
+            <td class="px-4 text-center">{{ item['CurrentStanding'] }}</td>
+            <td class="px-4 text-center">{{ item['RecentDate'] }}</td>
+        </tr>
+
+    {% endfor %}
+
+</table>
+<div class="d-flex justify-content-center py-3">
+    <form action="" method="POST" class="px-3">
+        <input type="hidden" name="DeleteForm" value="submitDelete">
+        <input type="submit" name="submitDelete" value="Delete User" class="btn btn-primary">
+    </form>
+
+    <form action="" method="POST" class="px-3">
+        <input type="hidden" name="DeleteForm" value="cancelDelete">
+        <input type="submit" name="cancelDelete" value="Cancel" class="btn btn-secondary">
+    </form>
+</div>
+
+{% if session['messages'] %}
+
+<div>
+    <p class="alert alert-success mt-4 px-5">{{ session['messages'] }}</p>
+</div>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h1 class="mt-5">Update User</h1>
+<h4 class="text-muted">Updating <i>{{ data[0]['UserName'] }}</i></h4>
+<hr class="pb-5">
+
+
+<div class="">
+    <div class="container card py-3" style="width: 18rem;">
+        <div class="">
+            <form action="" method="POST">
+                <input type="hidden" name="formUpdate" value="submitForm">
+                <label class="form-label">User Name: <input type="text" class="form-control" name="username" value="{{ data[0]["UserName"] }}"></label>
+                <label class="form-label">Number Marks: <input type="number" min="1" class="form-control" name="numbermarks" value="{{ data[0]["NumberMarks"] }}"></label>
+                <p>Recent Date will be updated to: <br> <i> {{date}} </i></p>
+                <input type="submit" name="submitUpdate" class="btn btn-primary w-100" value="Submit">
+            </form>
+
+            <form action="" method="POST">
+                <input type="hidden" name="formUpdate" value="cancelForm">
+                <input type="submit" name="cancelUpdate" class="btn btn-secondary w-100" value="Cancel">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

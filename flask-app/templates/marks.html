@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h1 class="mt-5">Marks</h1>
+<hr>
+
+<h4>Marks Data Functions</h4>
+<div class="p-3" style="border-style: solid; border-width: 1px; border-radius: 5px;">
+
+    <div class="d-flex">
+        <p class="px-3"><i>Search by Username:</i></p>
+        <form action="" method="POST" id="usernameFilterForm">
+            <input type="hidden" name="marks" value="usernameFilter">
+            <input type="hidden" name="Users" value="usernameForm">
+            <input type="text" name="username" placeholder="Enter Username">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+
+<form class="pt-3" action="" method="POST">
+    <input type="hidden" name="marks" value="refresh">
+    <input type="submit" value="Refresh Data">
+</form>
+
+<div class="container align-items-center justify-content-center py-5">
+    <table class="table">
+        <tr>
+            <th class="px-4 text-center">User Name</th>
+            <th class="px-4 text-center">Number Marks</th>
+            <th class="px-4 text-center">Reason</th>
+            <th class="px-4 text-center">Date</th>
+            <th class="px-4 text-center">Issuer</th>
+        </tr>
+
+        {% for item in data %}
+
+            <tr>
+                <td class="text-center">{{ item['UserName'] }}</td>
+                <td class="text-center">{{ item['NumberMarks'] }}</td>
+                <td class="text-center">{{ item['Reason'] }}</td>
+                <td class="text-center">{{ item['Date'] }}</td>
+                <td class="text-center">{{ item['Issuer'] }}</td>
+            </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h1 class="mt-5">Users</h1>
+<hr>
+
+<h4>User Data Functions</h4>
+<div class="p-3" style="border-style: solid; border-width: 1px; border-radius: 5px;">
+    <div class="d-flex">
+        <p class="px-3"><i> Search by Standing :</i></p>
+        <form action="" method="POST" id="standingsFilterForm">
+            <input type="hidden" name="Users" value="standingForm">
+            <select name="standings" id="standings">
+                <option value="GoodStanding">Good Standing</option>
+                <option value="FacilityBanSemester">Facility Ban (Semester)</option>
+                <option value="PermaBan">PermaBan</option>
+                <option value="CheckoutBanMonth">Checkout Ban (One Month)</option>
+            </select>
+            <input type="submit" value="Submit">
+            
+        </form>
+    </div>
+    <div class="d-flex">
+        <p class="px-3"><i>Search by Username:</i></p>
+        <form action="" method="POST" id="usernameFilterForm">
+            <input type="hidden" name="Users" value="usernameForm">
+            <input type="text" name="username" placeholder="Enter Username">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+
+{% if session['messages'] %}
+    <div>
+        <p class="alert alert-success mt-4 px-5">{{ session['messages'] }}</p>
+    </div>
+{% endif %}
+
+<div class="container align-items-center justify-content-center py-5">
+    <table class="table">
+        <tr>
+            <th class="px-4 text-center">User Name</th>
+            <th class="px-4 text-center">Number Marks</th>
+            <th class="px-4 text-center">Current Standing</th>
+            <th class="px-4 text-center">Recent Date</th>
+            <th class="px-4 text-center">Delete / Edit</th>
+
+        </tr>
+
+        {% for item in data %}
+
+            <tr>
+                <td class="text-center">{{ item['UserName'] }}</td>
+                <td class="text-center">{{ item['NumberMarks'] }}</td>
+                <td class="text-center">{{ item['CurrentStanding'] }}</td>
+                <td class="text-center">{{ item['RecentDate'] }}</td>
+                <td class="text-center"><a href="/delete/{{ item['UserName'] }}"><i class="bi bi-trash px-3"></i></a>
+                    <a href="/update/{{ item['UserName'] }}"><i class="bi bi-pencil"></i></a></td>
+
+            </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+{% endblock %}

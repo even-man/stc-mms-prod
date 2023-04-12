@@ -1,0 +1,135 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+    <h1 class="mt-5">Marks Information</h1>     
+    <hr>
+
+    <h5 class="text-left pt-3">Points Values</h5>
+    <hr>
+    <div class="">
+        <p class="lead">Marks are issued depending on how many items the user has out, and for how long they have kept these items overdue.</p>
+        <table class="table">
+            <tr>
+                <th>Points</th> 
+                <th>Description</th>
+            </tr>
+
+            <tr>
+                <td>1 Per Day</td>  
+                <td>Overdue Item (per item)</td>
+            </tr>
+            <tr>
+                <td>5</td>  
+                <td>Item damage, more serious rule violations</td>
+            </tr>
+            <tr>
+                <td>10</td>  
+                <td>Rule Violations, Profanity, Verbal Abuse</td>
+            </tr>
+            <tr>
+                <td>15</td>  
+                <td>Theft, violence, threatening</td>
+            </tr>
+            <tr>
+                <td>20</td>  
+                <td>Destruction on property, serios infractions</td>
+            </tr>
+            <tr>
+                <td>30</td>
+                <td>Maximum amount of marks per semester. User is banned for the semester</td>
+            </tr>
+            <tr>
+                <td>999</td>
+                <td>Enter '999' marks to permanently ban a user in the system. This should be done using a 'New Marks' form on the dashboard</td>
+            </tr>
+        </table>
+    </div>
+    
+    <h5 class="text-left pt-3">What to Know</h5>
+    <hr>
+
+    <p class="lead">New Marks Should be Issued from the 'Dashboard'
+                     tab. After marks have been entered, the marks can be seen from the 'Marks' tab by searching the user. A user can have multiple marks entered for
+                      them, but there is only one associated user account for each mark. <br><br> A user can be edited by navigating to the 'Users' tab and selecting the edit symbol next to the desired user. It is important to remember that while the new marks entered will update the
+                       users current standing, it will not create new marks for the User under the 'Marks' tab. So if entering new marks, always use the new marks form.</p>
+
+
+    <h5 class="text-left pt-3">Management Functions</h5>
+    <hr>
+
+    <p class="lead">The management login account has access to special management functions. The first of these functions allows for the user to reset all marks in the system. This sets all marks to zero, sets all standings to 'Good Standing', the date to 
+                    the current date, and the recorded status to zero. This function <i>does not</i> affect users who have been marked 'PermaBan' in the system. This action cannot be undone. <br><br>
+
+                    The other management function allows for sorting users by their 'Recorded' status. A user can be marked as recored in the system to designate when a user has been marked as banned in the R&R System. This allows for management to keep track of who has been
+                    entered into the system for organizational purposes.
+    </p>
+
+    <h5 class="text-left pt-3">Data Dictionaries</h5>
+    <hr>
+    <div class="pb-5" style="display: flex;
+                             justify-content: space-around;">
+    
+        <div>
+            <h3>Users</h3>
+            <table class="table">
+                <tr>
+                    <th>Column</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>Username</td>
+                    <td>The UARK username of the user</td>
+                </tr>
+                <tr>
+                    <td>Number Marks</td>
+                    <td>The number of marks associated with the user</td>
+                </tr>
+                <tr>
+                    <td>Current Standing</td>
+                    <td>The standing of the user. 'Good Standing', 'Facility Ban (Semester)', <br>'Checkout Ban (One Month)', 'PermaBan'</td>
+                </tr>
+                <tr>
+                    <td>Recent Date</td>
+                    <td>The most recent date the user record was updated</td>
+                </tr>
+                <tr>
+                    <td>Recorded</td>
+                    <td>A 'yes' or 'no' value that indicates if management has entered a user ban into the R&R system. <br> This value is only accessible through management login</td>
+                </tr>
+            </table>
+        </div>
+
+        <div>
+            <h3>Marks</h3>
+            <table class="table">
+                <tr>
+                    <th>Column</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>Username</td>
+                    <td>The UARK username of the user being issued the marks</td>
+                </tr>
+                <tr>
+                    <td>Number Marks</td>
+                    <td>The number of marks associated with the marks being entered</td>
+                </tr>
+                <tr>
+                    <td>Reason</td>
+                    <td>The reason for the associated marks being issued. </td>
+                </tr>
+                <tr>
+                    <td>Date</td>
+                    <td>The date of the marks being issued. Automatically generated by the system.</td>
+                </tr>
+                <tr>
+                    <td>Issuer</td>
+                    <td>UARK username of the employee issuing the marks.</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+{% endblock %}

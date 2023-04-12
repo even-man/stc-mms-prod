@@ -1,0 +1,98 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h1 class="mt-5">Management Console</h1>
+<hr>
+<div style="display: flex;
+            justify-content: space-around;">
+<div>
+    <h3 class="">Reset Marks</h3>
+    <div class="card p-3 text-center" style="width: 18rem; height: 20rem;">
+        <div class="alert alert-danger py-3">
+            <p><b>WARNING</b></p>
+            <p>This action fully resets all users not PermaBanned, and cannot be undone.</p>
+        </div>
+
+        <form action="" method="POST">
+            <input type="hidden" name="Manage" value="resetForm">
+            <input type="submit" class="btn btn-primary" value="Reset Marks" name="resetSubmit"> <br>
+            <div class="p-3">
+                <label for="confirmReset" class="form-label">Confirm Reset: </label>
+                <input class="" type="checkbox" name="confirmReset">
+            </div>
+        </form>
+
+        {% if session['messages'] %}
+            <div>
+                <p class="alert alert-success mt-4 px-5">{{ session['messages'] }}</p>
+            </div>
+        {% endif %}
+
+        {% if error %}
+            <div>
+                <p class="alert alert-danger mt-4 px-5">{{ error }}</p>
+            </div>
+        {% endif %}
+
+    </div>
+</div>
+
+<div>
+    <h3>Record Users</h3>
+
+        <div class="py-3" style="display: flex;">
+            <p class="px-3"><i> Return by  :</i></p>
+            <form action="" method="POST" id="standingsFilterForm">
+                <input type="hidden" name="Manage" value="standingForm">
+                <select name="standings" id="standings">
+                    <option value="GoodStanding">Good Standing</option>
+                    <option value="FacilityBanSemester">Facility Ban (Semester)</option>
+                    <option value="PermaBan">PermaBan</option>
+                    <option value="CheckoutBanMonth">Checkout Ban (One Month)</option>
+                    <option value="RecordedUsers">Recorded Users</option>
+                </select>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        
+
+        {% if filter %}
+            <p>Showing users: <i>{{ filter }}</i></p>
+        {% endif %}
+
+    <table class="table">
+        <tr>
+            <th class="text-center">Username</th>
+            <th class="text-center">Number Marks</th>
+            <th class="text-center">Current Standing</th>
+            <th class="text-center">Recent Date</th>
+            <th class="text-center">Mark 'Recorded'</th>
+        </tr>
+            {% for user in users %}
+            <tr>
+                <td class="text-center">{{user['UserName']}}</td>
+                <td class="text-center">{{user['NumberMarks']}}</td>
+                <td class="text-center">{{user['CurrentStanding']}}</td>
+                <td class="text-center">{{user['RecentDate']}}</td>
+                <td class="text-center"><a href="/record/{{ user['UserName'] }}/{{ user['Recorded'] }}">
+
+                    {% if user['Recorded'] == 0 %}
+                        Record
+                    {% else %}
+                        Unrecord
+                    {% endif %}
+
+                </a></td>
+            </tr>
+
+            {% endfor %}
+
+    </table>
+</div>
+
+
+</div>
+</div>
+
+{% endblock %}

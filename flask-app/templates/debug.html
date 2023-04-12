@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+
+    {{loginStatus}}
+    {{data}}
+
+    {% if loginStatus %}
+        <p>Login Success</p>
+    {% endif %}
+
+    {% for item in data %}
+
+        <ul style="list-style: none;">
+            <li>{{ item['Id'] }}</li>
+            <li>{{ item['UserName'] }}</li>
+            <li>{{ item['Password'] }}</li>
+        </ul>
+
+    {% endfor %}
+
+{% endblock %}
