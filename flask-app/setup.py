@@ -2,3 +2,11 @@ def SecretKey():
     return '123456'
 def DatabasePath():
     return './stc-mms.db'
+def mysqlHost():
+    return 'localhost'
+def mysqlUser():
+    return 'standard'
+def mysqlPass():
+    return 'password'
+def mysqlDb():
+    return 'stc-mms'
